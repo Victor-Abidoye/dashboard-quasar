@@ -1,117 +1,193 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh LpR fFf">
+
+    <q-header
+      elevated
+      class="bg-primary text-white"
+    >
       <q-toolbar>
         <q-btn
-          flat
           dense
+          flat
           round
           icon="menu"
-          aria-label="Menu"
           @click="toggleLeftDrawer"
         />
 
         <q-toolbar-title>
-          Quasar App
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          Title
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
-      v-model="leftDrawerOpen"
       show-if-above
+      v-model="leftDrawerOpen"
+      side="left"
       bordered
     >
-      <q-list>
-        <q-item-label
-          header
+      <!-- drawer content -->
+      <div
+        
+        style="max-width: 350px"
+      >
+        <q-list
+          bordered
+          class="rounded-borders"
         >
-          Essential Links
-        </q-item-label>
+          <q-expansion-item
+            expand-separator
+            icon="mail"
+            label="Inbox"
+            caption="5 unread emails"
+            default-opened
+          >
+            <q-expansion-item
+              :header-inset-level="1"
+              expand-separator
+              icon="receipt"
+              label="Receipts"
+              default-opened
+            >
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+              <q-expansion-item
+                switch-toggle-side
+                dense-toggle
+                label="Today"
+                :header-inset-level="1"
+                :content-inset-level="2"
+              >
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                    eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+
+              <q-expansion-item
+                switch-toggle-side
+                dense-toggle
+                label="Yesterday"
+                :header-inset-level="1"
+                :content-inset-level="2"
+              >
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                    eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+
+            </q-expansion-item>
+
+            <q-expansion-item
+              :header-inset-level="1"
+              :content-inset-level="1"
+              expand-separator
+              icon="schedule"
+              label="Postponed"
+            >
+              <q-card>
+                <q-card-section>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                  commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                  eveniet doloribus ullam aliquid.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+          </q-expansion-item>
+
+          <q-expansion-item
+            :content-inset-level="0.5"
+            expand-separator
+            icon="mail"
+            label="Inbox"
+            caption="5 unread emails"
+            default-opened
+          >
+            <q-expansion-item
+              expand-separator
+              :content-inset-level="0.5"
+              icon="receipt"
+              label="Receipts"
+            >
+
+              <q-expansion-item
+                label="Today"
+                :content-inset-level="0.5"
+              >
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                    eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+
+              <q-expansion-item
+                label="Yesterday"
+                :content-inset-level="0.5"
+              >
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                    eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+
+            </q-expansion-item>
+
+            <q-expansion-item
+              :content-inset-level="0.5"
+              expand-separator
+              icon="schedule"
+              label="Postponed"
+            >
+              <q-card>
+                <q-card-section>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                  commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                  eveniet doloribus ullam aliquid.
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+
+          </q-expansion-item>
+        </q-list>
+      </div>
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
+
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
+import { ref } from 'vue'
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
-import { defineComponent, ref } from 'vue'
-
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
+export default {
   setup () {
     const leftDrawerOpen = ref(false)
 
     return {
-      essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
   }
-})
+}
 </script>
