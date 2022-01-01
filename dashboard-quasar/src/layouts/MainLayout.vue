@@ -3,7 +3,7 @@
 
     <q-header
       elevated
-      class="bg-accent text-white"
+      class="bg-primary text-secondary"
     >
       <q-toolbar>
         <q-btn
